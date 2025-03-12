@@ -27,7 +27,7 @@ export const Home = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white shadow">
+      {/* <nav className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex">
@@ -72,7 +72,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </nav> */}
 
       {/* Main content */}
       <div className="py-10">

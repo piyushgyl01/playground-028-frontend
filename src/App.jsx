@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { GithubProfile, GoogleProfile, Home } from "./components";
+import { GithubProfile, GoogleProfile } from "./components/OwnerProfile";
+import { Home } from "./components/Home";
 import { Provider } from "react-redux";
 import store from "./store";
 import Posts from "./posts/Posts";
@@ -8,7 +9,7 @@ import EditPost from "./posts/EditPost";
 import PrivateRoute from "./PrivateRoute";
 import { useEffect } from "react";
 import { getCurrentUser } from "./auth/authSlice";
-import Auth from "./components/Auth"; // Using the Tailwind version
+import Auth from "./components/Auth"; // Tailwind version
 import Navbar from "./components/Navbar";
 
 // Create AppContent component to use hooks inside RouterProvider
