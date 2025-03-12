@@ -8,7 +8,8 @@ import EditPost from "./posts/EditPost";
 import PrivateRoute from "./PrivateRoute";
 import { useEffect } from "react";
 import { getCurrentUser } from "./auth/authSlice";
-import Auth from "./components/Auth";
+import Auth from "./components/Auth"; // Using the Tailwind version
+import Navbar from "./components/Navbar";
 
 // Create AppContent component to use hooks inside RouterProvider
 function AppContent() {
@@ -20,20 +21,40 @@ function AppContent() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Navbar />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/posts",
+          element: <Posts />,
+        },
+        {
+          path: "/create",
+          element: (
+            <PrivateRoute>
+              <CreatePost />
+            </PrivateRoute>
+          ),
+        },
+        {
+          path: "/edit/:id",
+          element: (
+            <PrivateRoute>
+              <EditPost />
+            </PrivateRoute>
+          ),
+        },
+      ],
     },
+    // Auth routes outside of Navbar layout
     {
       path: "/auth",
       element: <Auth />,
     },
-    {
-      path: "/profile",
-      element: (
-        <PrivateRoute>
-          <Home />
-        </PrivateRoute>
-      ),
-    },
+    // OAuth callback routes
     {
       path: "/v1/profile/github",
       element: <GithubProfile />,
@@ -49,26 +70,6 @@ function AppContent() {
     {
       path: "/v2/profile/google",
       element: <GoogleProfile />,
-    },
-    {
-      path: "/posts",
-      element: <Posts />,
-    },
-    {
-      path: "/create",
-      element: (
-        <PrivateRoute>
-          <CreatePost />
-        </PrivateRoute>
-      ),
-    },
-    {
-      path: "/edit/:id",
-      element: (
-        <PrivateRoute>
-          <EditPost />
-        </PrivateRoute>
-      ),
     },
   ]);
 

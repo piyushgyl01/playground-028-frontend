@@ -29,11 +29,6 @@ export default function EditPost() {
   }, [dispatch]);
 
   // Check if user is authenticated
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth", { state: { from: `/edit/${id}` } });
-    }
-  }, [isAuthenticated, navigate, id]);
 
   useEffect(() => {
     if (posts.length === 0) {

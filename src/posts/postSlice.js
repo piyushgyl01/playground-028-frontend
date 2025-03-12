@@ -1,23 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
-
-// Create API instance with auth interceptor
-const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
-  withCredentials: true // This is crucial for including cookies in the request
-});
-
-// Add request interceptor for auth token
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+import { api } from "../lib/axios.lib";
 
 // Create post thunk
 export const createPost = createAsyncThunk(
@@ -143,9 +125,6 @@ export const postsSlice = createSlice({
       });
   },
 });
-
-// Export the API instance for other slices to use
-export { api };
 
 export const { clearPostErrors } = postsSlice.actions;
 export default postsSlice.reducer;

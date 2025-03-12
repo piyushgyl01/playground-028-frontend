@@ -23,13 +23,6 @@ export default function CreatePost() {
     dispatch(clearPostErrors());
   }, [dispatch]);
 
-  // Check if user is authenticated
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/auth", { state: { from: "/create" } });
-    }
-  }, [isAuthenticated, navigate]);
-
   const validateForm = () => {
     const newErrors = {};
     

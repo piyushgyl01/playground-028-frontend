@@ -1,24 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 import Cookies from "js-cookie";
-
-// Create API instance with auth interceptor
-export const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
-  withCredentials: true // Ensures cookies are sent with requests
-});
-
-// Add request interceptor for auth token
-api.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => Promise.reject(error)
-);
+import { api } from "../lib/axios.lib";
 
 // Register user
 export const registerUser = createAsyncThunk(
@@ -56,11 +38,10 @@ export const logoutUser = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       await api.post("/auth/logout");
-      // Clear localStorage
+      // Clear localStorage and cookies
       localStorage.removeItem("token");
       localStorage.removeItem("username");
       localStorage.removeItem("userId");
-      // Clear cookies
       Cookies.remove("jwt_token");
       Cookies.remove("access_token");
       return null;

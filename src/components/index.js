@@ -1,2 +1,2 @@
-export * from './OwnerProfile';
-export * from './Home/index.jsx';
+export * from "./OwnerProfile";
+export * from "./Home";
