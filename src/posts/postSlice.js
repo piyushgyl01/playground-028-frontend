@@ -3,7 +3,8 @@ import axios from "axios";
 
 // Create API instance with auth interceptor
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000"
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
+  withCredentials: true // This is crucial for including cookies in the request
 });
 
 // Add request interceptor for auth token

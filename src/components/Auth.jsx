@@ -19,7 +19,7 @@ const Auth = () => {
   const location = useLocation();
   const { isAuthenticated, status, error } = useSelector(state => state.auth);
   
-  const from = location.state?.from?.pathname || '/';
+  const from = location.state?.from?.pathname || '/posts'; // Changed from '/' to '/posts'
   
   useEffect(() => {
     // Clear any previous auth errors when component mounts
@@ -27,7 +27,7 @@ const Auth = () => {
   }, [dispatch]);
   
   useEffect(() => {
-    // Redirect if authenticated
+    // Redirect if authenticated - now goes to /posts by default
     if (isAuthenticated) {
       navigate(from, { replace: true });
     }

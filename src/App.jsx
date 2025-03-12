@@ -3,10 +3,12 @@ import { GithubProfile, GoogleProfile, Home } from "./components";
 import { Provider } from "react-redux";
 import store from "./store";
 import Posts from "./posts/Posts";
+import CreatePost from "./posts/CreatePost";
+import EditPost from "./posts/EditPost";
 import PrivateRoute from "./PrivateRoute";
 import { useEffect } from "react";
 import { getCurrentUser } from "./auth/authSlice";
-import Auth from "./components/Auth"; // You'll need to create this component for login/register
+import Auth from "./components/Auth";
 
 // Create AppContent component to use hooks inside RouterProvider
 function AppContent() {
@@ -50,17 +52,13 @@ function AppContent() {
     },
     {
       path: "/posts",
-      element: (
-        <PrivateRoute>
-          <Posts />
-        </PrivateRoute>
-      ),
+      element: <Posts />,
     },
     {
       path: "/create",
       element: (
         <PrivateRoute>
-          <div>Create Post Page</div> {/* You'll need to implement this */}
+          <CreatePost />
         </PrivateRoute>
       ),
     },
@@ -68,7 +66,7 @@ function AppContent() {
       path: "/edit/:id",
       element: (
         <PrivateRoute>
-          <div>Edit Post Page</div> {/* You'll need to implement this */}
+          <EditPost />
         </PrivateRoute>
       ),
     },

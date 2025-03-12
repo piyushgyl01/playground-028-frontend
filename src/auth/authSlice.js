@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 // Create API instance with auth interceptor
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:4000",
-  withCredentials: true
+  withCredentials: true // Ensures cookies are sent with requests
 });
 
 // Add request interceptor for auth token
@@ -65,6 +65,12 @@ export const logoutUser = createAsyncThunk(
       Cookies.remove("access_token");
       return null;
     } catch (error) {
+      // Even if the server request fails, we want to clear local storage and cookies
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      localStorage.removeItem("userId");
+      Cookies.remove("jwt_token");
+      Cookies.remove("access_token");
       return rejectWithValue(error.response?.data || { message: error.message });
     }
   }

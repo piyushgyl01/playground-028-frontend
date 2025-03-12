@@ -112,12 +112,20 @@ export const Home = () => {
                   <div>
                     <h2 className="text-xl font-semibold mb-4">Join our community today!</h2>
                     <p className="mb-6">Sign up or log in to create posts and connect with others.</p>
-                    <Link
-                      to="/auth"
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-                    >
-                      <FiUser className="mr-2" /> Login / Register
-                    </Link>
+                    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                      <Link
+                        to="/auth"
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                      >
+                        <FiUser className="mr-2" /> Login / Register
+                      </Link>
+                      <Link
+                        to="/posts"
+                        className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50"
+                      >
+                        <FiList className="mr-2" /> Browse Posts
+                      </Link>
+                    </div>
                   </div>
                 )}
               </div>
