@@ -1,14 +1,14 @@
 // components/Home.jsx
-import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser, getCurrentUser } from '../auth/authSlice';
-import { FiHome, FiLogOut, FiUser, FiList, FiPlus } from 'react-icons/fi';
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser, getCurrentUser } from "../auth/authSlice";
+import { FiHome, FiLogOut, FiUser, FiList, FiPlus } from "react-icons/fi";
 
 export const Home = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isAuthenticated, user, status } = useSelector(state => state.auth);
+  const { isAuthenticated, user, status } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isAuthenticated && !user) {
@@ -20,7 +20,7 @@ export const Home = () => {
     dispatch(logoutUser())
       .unwrap()
       .then(() => {
-        navigate('/auth');
+        navigate("/auth");
       });
   };
 
@@ -78,21 +78,27 @@ export const Home = () => {
       <div className="py-10">
         <header>
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold leading-tight text-gray-900">Welcome to the Social App</h1>
+            <h1 className="text-3xl font-bold leading-tight text-gray-900">
+              Welcome to the Social App
+            </h1>
           </div>
         </header>
         <main>
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div className="px-4 py-8 sm:px-0">
               <div className="border-4 border-dashed border-gray-200 rounded-lg p-10 text-center">
-                {status === 'loading' ? (
+                {status === "loading" ? (
                   <div className="flex justify-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                   </div>
                 ) : isAuthenticated ? (
                   <div>
-                    <h2 className="text-xl font-semibold mb-4">Welcome back, {user?.name || user?.username || 'User'}!</h2>
-                    <p className="mb-6">Check out the latest posts or create your own.</p>
+                    <h2 className="text-xl font-semibold mb-4">
+                      Welcome back, {user?.name || user?.username || "User"}!
+                    </h2>
+                    <p className="mb-6">
+                      Check out the latest posts or create your own.
+                    </p>
                     <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                       <Link
                         to="/posts"
@@ -110,8 +116,12 @@ export const Home = () => {
                   </div>
                 ) : (
                   <div>
-                    <h2 className="text-xl font-semibold mb-4">Join our community today!</h2>
-                    <p className="mb-6">Sign up or log in to create posts and connect with others.</p>
+                    <h2 className="text-xl font-semibold mb-4">
+                      Join our community today!
+                    </h2>
+                    <p className="mb-6">
+                      Sign up or log in to create posts and connect with others.
+                    </p>
                     <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
                       <Link
                         to="/auth"
